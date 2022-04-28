@@ -11,7 +11,7 @@ const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -126,9 +126,9 @@ const Product = () => {
         <InfoContainer>
           <Title>Denim Jumpsuit</Title>
           <Desc>
-          Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere! 
-          Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere! 
-          Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere! 
+            Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere!
+            Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere!
+            Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere!
 
           </Desc>
           <Price>$ 20</Price>

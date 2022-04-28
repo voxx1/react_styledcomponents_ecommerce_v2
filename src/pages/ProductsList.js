@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Annoucement from "../components/Annoucement";
-import Products from "../components/Products";
+import AllProducts from "../components/AllProducts";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
+import MenProducts from "../components/MenProducts";
+import WomenProducts from "../components/WomenProducts";
+import UnisexProducts from "../components/UnisexProducts";
 
 const Container = styled.div``;
 
@@ -36,12 +39,26 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const ProductsList = () => {
+const ProductsList = (props) => {
+
+  let typeinfo
+
+  if (props.type === "men") {
+    typeinfo = <MenProducts />
+  } else if (props.type === "women") {
+    typeinfo = <WomenProducts />
+  } else if (props.type === "unisex") {
+    typeinfo = <UnisexProducts />
+  }
+  else {
+    typeinfo = <AllProducts />
+  }
+
   return (
     <Container>
       <Navbar />
       <Annoucement />
-      <Title>Dresses</Title>
+      <Title>{props.name}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
@@ -54,7 +71,6 @@ const ProductsList = () => {
             <Option>Red</Option>
             <Option>Blue</Option>
             <Option>Yellow</Option>
-            <Option>Green</Option>
           </Select>
           <Select>
             <Option disabled selected>
@@ -70,13 +86,12 @@ const ProductsList = () => {
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
+            <Option selected>Price (asc)</Option>
             <Option>Price (desc)</Option>
           </Select>
         </Filter>
       </FilterContainer>
-      <Products />
+      {typeinfo}
       <Newsletter />
       <Footer />
     </Container>

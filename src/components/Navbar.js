@@ -1,8 +1,9 @@
 import { Badge } from "@material-ui/core";
-import { Search, ShoppingCartOutlined } from "@material-ui/icons";
+import { ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
@@ -21,27 +22,12 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  ${mobile({ display: "none" })}
 `;
 
 const Language = styled.span`
   font-size: 14px;
   cursor: pointer;
-  ${mobile({ display: "none" })}
-`;
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-  ${mobile({ marginLeft: "5px" })}
-
-`;
-
-const Input = styled.input`
-  border: none;
-  ${mobile({ width: "50px" })}
 `;
 
 const Center = styled.div`
@@ -49,8 +35,11 @@ const Center = styled.div`
   text-align: center;
 `;
 
-const Logo = styled.h2`
+const Logo = styled(Link)`
   font-weight: bold;
+  font-size: 30px;
+  color: black;
+  text-decoration: none;
   ${mobile({ fontSize: "24px" })}
 `;
 const Right = styled.div`
@@ -61,31 +50,36 @@ const Right = styled.div`
   ${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
-const MenuItem = styled.div`
+const MenuItem = styled(Link)`
   font-size: 14px;
   cursor: pointer;
+  color: black;
+  text-decoration: none;
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
 const Navbar = () => {
+
+
+
   return (
     <Container>
       <Wrapper>
         <Left>
           <Language>EN</Language>
-          <SearchContainer>
-            <Input type="text" placeholder="Search" />
-            <Search style={{ color: "gray", fontSize: 16 }} />
-          </SearchContainer>
         </Left>
         <Center>
-          <Logo>ENVA.</Logo>
+          <Logo to="/">ENVA.</Logo>
+
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
-          <MenuItem>
+          <MenuItem to="/">HOME</MenuItem>
+          <MenuItem to="/shop">SHOP</MenuItem>
+          <MenuItem to="/cart">CART</MenuItem>
+
+          <MenuItem to="/login">SIGN IN</MenuItem>
+          <MenuItem to="/cart">
             <Badge badgeContent={4} color="primary">
               <ShoppingCartOutlined />
             </Badge>

@@ -44,7 +44,7 @@ const CategoryList = () => {
     <Container>
       <InfoContainer>
         <Title>Check items categories!</Title>
-        <Desc>Click on item to see more!</Desc>
+        <Desc>Click on any to see more!</Desc>
       </InfoContainer>
       <ItemsWrapper>
         {categories.map((item) => (

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { popularProducts } from "../DUMMY_DATA";
+import { allProducts } from "../DUMMY_DATA";
 import Product from "./Product";
 import { mobile } from '../responsive'
 
@@ -36,21 +36,21 @@ const Desc = styled.p`
   letter-spacing: 3px;
 `;
 
-const Products = () => {
-  return (
-      <>
-      <InfoContainer>
-              <Title>Check our bestsellers!</Title>
-              <Desc>Click on item to see more!</Desc>
+const AllProducts = () => {
+    return (
+        <>
+            <InfoContainer>
+                <Title>See all of our products!</Title>
+                <Desc>Click on item to see more!</Desc>
             </InfoContainer>
-        <Container> 
-              {popularProducts.map((item) => (
-        <Product item={item} key={item.id} />
-                ))}  
-        </Container>
-      </>
-      
-  );
+            <Container>
+                {allProducts.map((item) => (
+                    <Product item={item} key={item.id} />
+                ))}
+            </Container>
+        </>
+
+    );
 };
 
-export default Products;
+export default AllProducts;
