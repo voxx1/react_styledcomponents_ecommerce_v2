@@ -1,8 +1,8 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Annoucement from "../components/Annoucement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Annoucement from "../components/UI/Annoucement";
+import Footer from "../components/UI/Footer";
+import Navbar from "../components/UI/Navbar";
 import { mobile } from "../responsive";
 
 const Container = styled.div``;

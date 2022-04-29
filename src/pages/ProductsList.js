@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import Navbar from "../components/Navbar";
-import Annoucement from "../components/Annoucement";
-import AllProducts from "../components/AllProducts";
-import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
+import Navbar from "../components/UI/Navbar";
+import Annoucement from "../components/UI/Annoucement";
+import AllProducts from "../components/Products/AllProducts";
+import Newsletter from "../components/UI/Newsletter"
+import Footer from "../components/UI/Footer";
 import { mobile } from "../responsive";
-import MenProducts from "../components/MenProducts";
-import WomenProducts from "../components/WomenProducts";
-import UnisexProducts from "../components/UnisexProducts";
+import MenProducts from "../components/Products/MenProducts";
+import WomenProducts from "../components/Products/WomenProducts";
+import UnisexProducts from "../components/Products/UnisexProducts";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 const Container = styled.div``;
 
@@ -41,18 +43,35 @@ const Option = styled.option``;
 
 const ProductsList = (props) => {
 
+
+
+  const location = useLocation();
+  const categoryName = window.location.pathname.split("/").pop()
+  const [filters, setFilters] = useState({});
+  const [sort, setSort] = useState("Price (asc)")
+
+  const handleFilters = (e) => {
+    const value = e.target.value;
+    setFilters({
+      ...filters,
+      [e.target.name]: value,
+    })
+  }
+
   let typeinfo
 
   if (props.type === "men") {
-    typeinfo = <MenProducts />
+    typeinfo = <MenProducts category={categoryName} filters={filters} sort={sort} />
   } else if (props.type === "women") {
-    typeinfo = <WomenProducts />
+    typeinfo = <WomenProducts category={categoryName} filters={filters} sort={sort} />
   } else if (props.type === "unisex") {
-    typeinfo = <UnisexProducts />
+    typeinfo = <UnisexProducts category={categoryName} filters={filters} sort={sort} />
   }
   else {
-    typeinfo = <AllProducts />
+    typeinfo = <AllProducts category={categoryName} filters={filters} sort={sort} />
   }
+
+  console.log(location)
 
   return (
     <Container>
@@ -62,17 +81,17 @@ const ProductsList = (props) => {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
+          <Select name="color" onChange={handleFilters}>
             <Option disabled selected>
               Color
             </Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
+            <Option>white</Option>
+            <Option>black</Option>
+            <Option>red</Option>
+            <Option>blue</Option>
+            <Option>pink</Option>
           </Select>
-          <Select>
+          <Select name="size" onChange={handleFilters}>
             <Option disabled selected>
               Size
             </Option>
@@ -85,9 +104,9 @@ const ProductsList = (props) => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Price (asc)</Option>
-            <Option>Price (desc)</Option>
+          <Select onChange={(e) => setSort(e.target.value)}>
+            <Option value="Price (asc)" selected>Price (asc)</Option>
+            <Option value="Price (desc)">Price (desc)</Option>
           </Select>
         </Filter>
       </FilterContainer>

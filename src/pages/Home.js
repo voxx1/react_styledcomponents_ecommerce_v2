@@ -1,10 +1,10 @@
-import Navbar from '../components/Navbar'
+import Navbar from '../components/UI/Navbar'
 import React from 'react'
-import Annoucement from '../components/Annoucement'
-import Hero from '../components/Hero'
-import CategoryList from '../components/CategoryList'
-import Footer from '../components/Footer'
-import Newsletter from '../components/Newsletter'
+import Annoucement from '../components/UI/Annoucement'
+import Hero from '../components/UI/Hero'
+import CategoryList from '../components/UI/CategoryList'
+import Footer from '../components/UI/Footer'
+import Newsletter from '../components/UI/Newsletter'
 
 const Home = () => {
   return (

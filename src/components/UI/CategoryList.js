@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { categories } from '../DUMMY_DATA'
-import { mobile } from "../responsive";
+import { categories } from '../../DUMMY_DATA'
+import { mobile } from "../../responsive";
 import CategoryItem from "./CategoryItem";
 
 const Container = styled.div`

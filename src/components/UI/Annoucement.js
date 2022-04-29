@@ -15,7 +15,7 @@ font-weight: 500
 const Annoucement = () => {
   return (
     <Container>
-        GET YOUR EXTRA DEALS ONLY TODAY! 
+      GET YOUR EXTRA DEALS ONLY TODAY!
     </Container>
   )
 }

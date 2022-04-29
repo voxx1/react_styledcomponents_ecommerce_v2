@@ -1,6 +1,6 @@
 const dummyItems = [
   {
-    id: 1,
+    id: "t1",
     img: "https://media.istockphoto.com/photos/shopping-time-young-women-shopping-together-consumerism-fashion-picture-id1194744301?k=20&m=1194744301&s=170667a&w=0&h=M-vLEm33tChlo7OtfzqmRqlFqgnu_QxO9ChA5k43zhI=",
     title: "Get your new clothes today!",
     desc: "We are launching our ner collection of best clothes and shoes!",
@@ -21,197 +21,271 @@ const dummyItems = [
 
 export const categories = [
   {
-    id: 1,
+    id: "c1",
     img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     title: "MEN",
     type: 'men'
   },
   {
-    id: 2,
+    id: "c2",
     img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     title: "WOMEN",
     type: "women"
   },
   {
-    id: 3,
+    id: "c3",
     img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
     title: "UNISEX",
     type: 'unisex'
   },
 ];
 
-export const popularProducts = [
-  {
-    id: 1,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-  },
-  {
-    id: 2,
-    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-  },
-  {
-    id: 3,
-    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
-  },
-  {
-    id: 4,
-    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-  },
-  {
-    id: 5,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
-  },
-]
 
 export const allProducts = [
   {
-    id: 1,
+    id: "p1",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    color: ["black", "white", "red", "blue", "pink"],
-    size: ["XS", "S", "M", "L", "XL"],
-    tag: ["men", "women"]
+    color: ["blue", "pink"],
+    size: ["L", "XL"],
+    tag: ["men", "women"],
+    price: 129,
+    title: "Summer Bag",
   },
   {
-    id: 2,
+    id: "p2",
     img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-    color: ["black", "blue", "pink"],
-    size: ["XS", "S", "XL"],
-    tag: ["women"]
+    color: ["black"],
+    size: ["XS", "S"],
+    tag: ["women"],
+    price: 25,
+    title: "Autumn Bag",
   },
   {
-    id: 3,
+    id: "p3",
     img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
-    color: ["black", "red", "blue"],
-    size: ["M", "L", "XL"],
-    tag: ["men", "women"]
+    color: ["red", "blue"],
+    size: ["L"],
+    tag: ["men", "women"],
+    price: 17,
+    title: "Summer Bag",
   },
   {
-    id: 4,
+    id: "p4",
     img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
     color: ["white", "red"],
-    size: ["XS", "S", "M"],
-    tag: ["men"]
-  },
-  {
-    id: 5,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
-    color: ["red", "blue", "pink"],
-    size: ["XS", "S", "M", "L"],
-    tag: ["men"]
-  },
-  {
-    id: 6,
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    color: ["white", "blue", "pink"],
-    size: ["XS", "S", "M", "XL"],
-    tag: ["men"]
-  },
-  {
-    id: 7,
-    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-    color: ["black", "white", "red"],
-    size: ["M", "L", "XL"],
-    tag: ["women"]
-  },
-  {
-    id: 8,
-    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
-    color: ["black", "red", "blue", "pink"],
     size: ["XS", "S"],
-    tag: ["women"]
+    tag: ["men"],
+    price: 135,
+    title: "Winter Bag",
   },
   {
-    id: 9,
-    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-    color: ["white", "red", "blue", "pink"],
-    size: ["L", "XL"],
-    tag: ["men", "women"]
-  },
-  {
-    id: 10,
+    id: "p5",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
-    color: ["black", "white", "red", "blue", "pink"],
-    size: ["XS", "S", "M", "L", "XL"],
-    tag: ["men", "women"]
+    color: ["red", "pink"],
+    size: ["M", "L"],
+    tag: ["men"],
+    price: 235,
+    title: "Summer Bag",
+  },
+  {
+    id: "p6",
+    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    color: ["white", "red"],
+    size: ["XS", "M"],
+    tag: ["men"],
+    title: "Summer Bag",
+    price: 19
+  },
+  {
+    id: "p7",
+    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    color: ["blue", "pink"],
+    size: ["M", "L"],
+    tag: ["men"],
+    title: "Catty Cap",
+    price: 51
+
+  },
+  {
+    id: "p8",
+    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    color: ["white"],
+    size: ["XS", "S"],
+    tag: ["men"],
+    title: "Shiny T-shirt",
+    price: 83
+  },
+  {
+    id: "p9",
+    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    color: ["red"],
+    size: ["XS", "L"],
+    tag: ["men"],
+    title: "Doggy Cap",
+    price: 35
+  }, {
+    id: "p10",
+    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    color: ["black", "pink"],
+    size: ["S", "XL"],
+    tag: ["women"],
+    price: 119,
+    title: "Energetic Dress",
+  },
+  {
+    id: "p11",
+    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    color: ["white", "red"],
+    size: ["L", "XL"],
+    tag: ["women"],
+    price: 51,
+    title: "Loose T-shirt",
+  },
+  {
+    id: "p12",
+    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+    color: ["blue", "pink"],
+    size: ["XS", "S"],
+    tag: ["women"],
+    price: 11,
+    title: "Loose T-shirt",
+  },
+  {
+    id: "p13",
+    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    color: ["white", "red"],
+    size: ["L", "XL"],
+    tag: ["men", "women"],
+    price: 85,
+    title: "Kid Cap",
+  },
+  {
+    id: "p14",
+    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+    color: ["blue"],
+    size: ["M", "L"],
+    tag: ["men", "women"],
+    price: 21,
+    title: "Warm Dress",
+  },
+  {
+    id: "p15",
+    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    color: ["pink"],
+    size: ["L", "XL"],
+    tag: ["men", "women"],
+    price: 119,
+    title: "Young T-shirt",
   },
 ]
 
 export const menProducts = [
 
   {
-    id: 1,
+    id: "m1",
     img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
     color: ["white", "red"],
     size: ["XS", "S", "M"],
-    tag: ["men"]
+    tag: ["men"],
+    title: "Summer Bag",
+    price: 19
   },
   {
-    id: 2,
+    id: "m2",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
     color: ["red", "blue", "pink"],
     size: ["XS", "S", "M", "L"],
-    tag: ["men"]
+    tag: ["men"],
+    title: "Catty Cap",
+    price: 51
+
   },
   {
-    id: 3,
+    id: "m3",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
     color: ["white", "blue", "pink"],
     size: ["XS", "S", "M", "XL"],
-    tag: ["men"]
-  }
+    tag: ["men"],
+    title: "Shiny T-shirt",
+    price: 83
+  },
+  {
+    id: "m4",
+    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    color: ["red", "pink"],
+    size: ["XS", "L"],
+    tag: ["men"],
+    title: "Doggy Cap",
+    price: 35
+
+  },
 ]
 export const womenProducts = [
 
   {
-    id: 2,
+    id: "w1",
     img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
     color: ["black", "blue", "pink"],
     size: ["XS", "S", "XL"],
-    tag: ["women"]
+    tag: ["women"],
+    price: 119,
+    title: "Energetic Dress",
   },
   {
-    id: 7,
+    id: "w2",
     img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
     color: ["black", "white", "red"],
     size: ["M", "L", "XL"],
-    tag: ["women"]
+    tag: ["women"],
+    price: 51,
+    title: "Loose T-shirt",
   },
   {
-    id: 8,
+    id: "w3",
     img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
     color: ["black", "red", "blue", "pink"],
     size: ["XS", "S"],
-    tag: ["women"]
+    tag: ["women"],
+    price: 11,
+    title: "Loose T-shirt",
   }
 ]
 export const unisexProducts = [
   {
-    id: 1,
+    id: "u1",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    color: ["black", "white", "red", "blue", "pink"],
-    size: ["XS", "S", "M", "L", "XL"],
-    tag: ["men", "women"]
+    color: ["black", "white", "red"],
+    size: ["L", "XL"],
+    tag: ["men", "women"],
+    price: 85,
+    title: "Kid Cap",
   },
   {
-    id: 3,
+    id: "u2",
     img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
     color: ["black", "red", "blue"],
     size: ["M", "L", "XL"],
-    tag: ["men", "women"]
+    tag: ["men", "women"],
+    price: 21,
+    title: "Warm Dress",
   },
   {
-    id: 9,
+    id: "u3",
     img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-    color: ["white", "red", "blue", "pink"],
+    color: ["blue", "pink"],
     size: ["L", "XL"],
-    tag: ["men", "women"]
+    tag: ["men", "women"],
+    price: 119,
+    title: "Young T-shirt",
   },
   {
-    id: 10,
+    id: "u4",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
     color: ["black", "white", "red", "blue", "pink"],
     size: ["XS", "S", "M", "L", "XL"],
-    tag: ["men", "women"]
+    tag: ["men", "women"],
+    price: 15,
+    title: "Eco-Bag",
   },
 ]
 export default dummyItems

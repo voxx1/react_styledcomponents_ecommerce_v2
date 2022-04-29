@@ -1,10 +1,13 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
-import Annoucement from "../components/Annoucement";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import Newsletter from "../components/Newsletter";
+import Annoucement from "../components/UI/Annoucement";
+import Footer from "../components/UI/Footer";
+import Navbar from "../components/UI/Navbar";
+import Newsletter from "../components/UI/Newsletter";
 import { mobile } from "../responsive";
+import { useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { allProducts, unisexProducts, menProducts, womenProducts } from "../DUMMY_DATA";
 
 const Container = styled.div``;
 
@@ -32,7 +35,8 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-weight: 200;
+  font-weight: 600;
+  color: black;
 `;
 
 const Desc = styled.p`
@@ -69,6 +73,7 @@ const FilterColor = styled.div`
   background-color: ${(props) => props.color};
   margin: 0px 5px;
   cursor: pointer;
+  border: 1px solid black;
 `;
 
 const FilterSize = styled.select`
@@ -90,6 +95,7 @@ const AmountContainer = styled.div`
   display: flex;
   align-items: center;
   font-weight: 700;
+  cursor: pointer;
 `;
 
 const Amount = styled.span`
@@ -115,46 +121,89 @@ const Button = styled.button`
 `;
 
 const Product = () => {
+
+  const location = useLocation();
+  const [products, setProducts] = useState(allProducts)
+  const [singleProduct, setSingleProduct] = useState({
+    color: [],
+    size: [],
+  })
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+
+
+  let productID = window.location.pathname.split("/").pop()
+
+  const handleQuantity = (type) => {
+    if (type === "dec") {
+      quantity > 1 && setQuantity(prev => prev - 1)
+    } else {
+      setQuantity(prev => prev + 1)
+    }
+  }
+
+  useEffect(() => {
+    if (location.pathname === `/shop/${productID}`) {
+      setProducts(allProducts)
+    } else if (location.pathname === `/shop/men/${productID}`) {
+      setProducts(menProducts)
+    } else if (location.pathname === `/shop/women/${productID}`) {
+      setProducts(womenProducts)
+    } else {
+      setProducts(unisexProducts)
+    }
+
+
+
+  }, [location.pathname, productID])
+
+  useEffect(() => {
+    const uniqueItem = products.filter((item) => {
+      return item.id === productID
+    });
+    setSingleProduct(uniqueItem[0])
+  }, [productID, products])
+
+
   return (
     <Container>
       <Navbar />
       <Annoucement />
       <Wrapper>
         <ImgContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={singleProduct.img} />
         </ImgContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
+          <Title>{singleProduct.title}</Title>
           <Desc>
             Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere!
             Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere!
             Lorem ipsum is great text! It is used to fill empty spaces on your website. Feel free to use it everywhere!
 
           </Desc>
-          <Price>$ 20</Price>
+          <Price>$ {singleProduct.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {singleProduct.color.map((itemColor) => (
+                <FilterColor color={itemColor} key={itemColor} onClick={() => setColor(itemColor)} />
+              ))}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+              <FilterSize onChange={(e) => setSize(e.target.value)}>
+                {singleProduct.size.map((itemSize) => (
+                  <FilterSizeOption key={itemSize}>{itemSize}</FilterSizeOption>
+                ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => handleQuantity("dec")} />
+              <Amount>{quantity}</Amount>
+              <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button>ADD TO CART</Button>
           </AddContainer>
