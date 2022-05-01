@@ -44,7 +44,7 @@ export const categories = [
 export const allProducts = [
   {
     id: "p1",
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    img: "https://i.pinimg.com/originals/62/98/b0/6298b026a65cf80bcf9dce061e9b79c9.png",
     color: ["blue", "pink"],
     size: ["L", "XL"],
     tag: ["men", "women"],
@@ -62,7 +62,7 @@ export const allProducts = [
   },
   {
     id: "p3",
-    img: "https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+    img: "https://i.pinimg.com/originals/62/98/b0/6298b026a65cf80bcf9dce061e9b79c9.png",
     color: ["red", "blue"],
     size: ["L"],
     tag: ["men", "women"],
@@ -98,7 +98,7 @@ export const allProducts = [
   },
   {
     id: "p7",
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt-PNG.png",
     color: ["blue", "pink"],
     size: ["M", "L"],
     tag: ["men"],
@@ -108,7 +108,7 @@ export const allProducts = [
   },
   {
     id: "p8",
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt.png",
     color: ["orange"],
     size: ["XS", "S"],
     tag: ["men"],
@@ -125,7 +125,7 @@ export const allProducts = [
     price: 35
   }, {
     id: "p10",
-    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt-PNG.png",
     color: ["black", "pink"],
     size: ["S", "XL"],
     tag: ["women"],
@@ -170,7 +170,7 @@ export const allProducts = [
   },
   {
     id: "p15",
-    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt.png",
     color: ["pink"],
     size: ["L", "XL"],
     tag: ["men", "women"],
@@ -211,12 +211,50 @@ export const menProducts = [
   },
   {
     id: "m4",
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
     color: ["red", "pink"],
     size: ["XS", "L"],
     tag: ["men"],
     title: "Doggy Cap",
-    price: 35
+    price: 325
+
+  },
+  {
+    id: "m5",
+    img: "https://i.pinimg.com/originals/62/98/b0/6298b026a65cf80bcf9dce061e9b79c9.png",
+    color: ["orange", "red"],
+    size: ["XS", "S", "M"],
+    tag: ["men"],
+    title: "Summer Bag",
+    price: 119
+  },
+  {
+    id: "m6",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt.png",
+    color: ["red", "blue", "pink"],
+    size: ["XS", "S", "M", "L"],
+    tag: ["men"],
+    title: "Catty Cap",
+    price: 51
+
+  },
+  {
+    id: "m7",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt-PNG.png",
+    color: ["orange", "blue", "pink"],
+    size: ["XS", "S", "M", "XL"],
+    tag: ["men"],
+    title: "Shiny T-shirt",
+    price: 13
+  },
+  {
+    id: "m8",
+    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    color: ["red", "pink"],
+    size: ["XS", "L"],
+    tag: ["men"],
+    title: "Doggy Cap",
+    price: 31
 
   },
 ]
@@ -233,7 +271,7 @@ export const womenProducts = [
   },
   {
     id: "w2",
-    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    img: "https://i.pinimg.com/originals/62/98/b0/6298b026a65cf80bcf9dce061e9b79c9.png",
     color: ["black", "orange", "red"],
     size: ["M", "L", "XL"],
     tag: ["women"],
@@ -249,11 +287,46 @@ export const womenProducts = [
     price: 11,
     title: "Loose T-shirt",
   },
+  {
+    id: "w4",
+    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+    color: ["black", "blue", "pink"],
+    size: ["XS", "S", "XL"],
+    tag: ["women"],
+    price: 32,
+    title: "Energetic Dress",
+  },
+  {
+    id: "w5",
+    img: "https://i.pinimg.com/originals/62/98/b0/6298b026a65cf80bcf9dce061e9b79c9.png",
+    color: ["black", "orange", "red"],
+    size: ["M", "L", "XL"],
+    tag: ["women"],
+    price: 151,
+    title: "Loose T-shirt",
+  },
+  {
+    id: "w6",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt-PNG.png",
+    color: ["black", "red", "blue", "pink"],
+    size: ["XS", "S"],
+    tag: ["women"],
+    price: 112,
+    title: "Loose T-shirt",
+  }, {
+    id: "w7",
+    img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+    color: ["black", "blue", "pink"],
+    size: ["XS", "S", "XL"],
+    tag: ["women"],
+    price: 119,
+    title: "Energetic Dress",
+  },
 ]
 export const unisexProducts = [
   {
     id: "u1",
-    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt-PNG.png",
     color: ["black", "orange", "red"],
     size: ["L", "XL"],
     tag: ["men", "women"],
@@ -271,7 +344,7 @@ export const unisexProducts = [
   },
   {
     id: "u3",
-    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
     color: ["blue", "pink"],
     size: ["L", "XL"],
     tag: ["men", "women"],
@@ -285,6 +358,42 @@ export const unisexProducts = [
     size: ["XS", "S", "M", "L", "XL"],
     tag: ["men", "women"],
     price: 15,
+    title: "Eco-Bag",
+  },
+  {
+    id: "u5",
+    img: "https://i.pinimg.com/originals/62/98/b0/6298b026a65cf80bcf9dce061e9b79c9.png",
+    color: ["black", "orange", "red"],
+    size: ["L", "XL"],
+    tag: ["men", "women"],
+    price: 185,
+    title: "Kid Cap",
+  },
+  {
+    id: "u6",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReKxrl98bctpXiaLur94qZnJqdmWZYt25jeA&usqp=CAUhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGXvJ1jOp-iNvH0fzNvmcIROVWiNC1ZH83ZA&usqp=CAU",
+    color: ["black", "red", "blue"],
+    size: ["M", "L", "XL"],
+    tag: ["men", "women"],
+    price: 421,
+    title: "Warm Dress",
+  },
+  {
+    id: "u7",
+    img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+    color: ["blue", "pink"],
+    size: ["L", "XL"],
+    tag: ["men", "women"],
+    price: 39,
+    title: "Young T-shirt",
+  },
+  {
+    id: "u8",
+    img: "https://www.pngall.com/wp-content/uploads/4/Skirt.png",
+    color: ["black", "orange", "red", "blue", "pink"],
+    size: ["XS", "S", "M", "L", "XL"],
+    tag: ["men", "women"],
+    price: 215,
     title: "Eco-Bag",
   },
 ]

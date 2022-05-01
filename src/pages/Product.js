@@ -22,6 +22,10 @@ const Wrapper = styled.div`
 const ImgContainer = styled.div`
   flex: 1;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
 `;
 
 const Image = styled.img`
@@ -58,11 +62,10 @@ const Price = styled.span`
 `;
 
 const FilterContainer = styled.div`
-  width: 50%;
   margin: 30px 0px;
   display: flex;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  justify-content: flex-start;
+  ${mobile({ width: "100%", justifyContent: "space-between" })}
 `;
 
 const Filter = styled.div`
@@ -73,12 +76,20 @@ const Filter = styled.div`
 const FilterTitle = styled.span`
   font-size: 20px;
   font-weight: 200;
+
 `;
+
+const AddedItem = styled.span`
+${mobile({ textAlign: "center", display: "block" })}
+
+`
 
 
 const FilterColorSelect = styled.select`
   margin-left: 10px;
   padding: 5px;
+  margin-right: 20px;
+
 `;
 
 const FilterColorOption = styled.option``;
@@ -87,16 +98,17 @@ const FilterColorOption = styled.option``;
 const FilterSize = styled.select`
   margin-left: 10px;
   padding: 5px;
+  
 `;
 
 const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
-  width: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  ${mobile({ width: "100%", justifyContent: "space-between" })}
 `;
 
 const AmountContainer = styled.div`
@@ -123,6 +135,8 @@ const Button = styled.button`
   background-color: white;
   cursor: pointer;
   font-weight: 500;
+  margin-left: 40px;
+
   &:hover{
       background-color: #f8f4f4;
   }
@@ -245,7 +259,7 @@ const Product = () => {
             <Button onClick={handleClick}>ADD TO CART</Button>
 
           </AddContainer>
-          {itemAdded ? <span>Item was added to cart!</span> : ""}
+          {itemAdded ? <AddedItem >Item was added to cart!</AddedItem> : ""}
         </InfoContainer>
       </Wrapper>
       <Newsletter />

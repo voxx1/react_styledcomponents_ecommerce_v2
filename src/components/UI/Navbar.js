@@ -34,7 +34,7 @@ const Language = styled.span`
 const Center = styled.div`
   flex: 1;
   text-align: center;
-  ${mobile({ flex: 0, marginLeft: "10px" })}
+  ${mobile({ flex: 0, marginLeft: "10px", textAligh: "flex-start" })}
 
 `;
 
