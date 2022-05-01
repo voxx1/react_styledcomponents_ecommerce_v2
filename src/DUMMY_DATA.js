@@ -72,7 +72,7 @@ export const allProducts = [
   {
     id: "p4",
     img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-    color: ["white", "red"],
+    color: ["orange", "red"],
     size: ["XS", "S"],
     tag: ["men"],
     price: 135,
@@ -90,7 +90,7 @@ export const allProducts = [
   {
     id: "p6",
     img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-    color: ["white", "red"],
+    color: ["orange", "red"],
     size: ["XS", "M"],
     tag: ["men"],
     title: "Summer Bag",
@@ -109,7 +109,7 @@ export const allProducts = [
   {
     id: "p8",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    color: ["white"],
+    color: ["orange"],
     size: ["XS", "S"],
     tag: ["men"],
     title: "Shiny T-shirt",
@@ -135,7 +135,7 @@ export const allProducts = [
   {
     id: "p11",
     img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-    color: ["white", "red"],
+    color: ["orange", "red"],
     size: ["L", "XL"],
     tag: ["women"],
     price: 51,
@@ -153,7 +153,7 @@ export const allProducts = [
   {
     id: "p13",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    color: ["white", "red"],
+    color: ["orange", "red"],
     size: ["L", "XL"],
     tag: ["men", "women"],
     price: 85,
@@ -184,7 +184,7 @@ export const menProducts = [
   {
     id: "m1",
     img: "https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
-    color: ["white", "red"],
+    color: ["orange", "red"],
     size: ["XS", "S", "M"],
     tag: ["men"],
     title: "Summer Bag",
@@ -203,7 +203,7 @@ export const menProducts = [
   {
     id: "m3",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    color: ["white", "blue", "pink"],
+    color: ["orange", "blue", "pink"],
     size: ["XS", "S", "M", "XL"],
     tag: ["men"],
     title: "Shiny T-shirt",
@@ -234,7 +234,7 @@ export const womenProducts = [
   {
     id: "w2",
     img: "https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
-    color: ["black", "white", "red"],
+    color: ["black", "orange", "red"],
     size: ["M", "L", "XL"],
     tag: ["women"],
     price: 51,
@@ -248,13 +248,13 @@ export const womenProducts = [
     tag: ["women"],
     price: 11,
     title: "Loose T-shirt",
-  }
+  },
 ]
 export const unisexProducts = [
   {
     id: "u1",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
-    color: ["black", "white", "red"],
+    color: ["black", "orange", "red"],
     size: ["L", "XL"],
     tag: ["men", "women"],
     price: 85,
@@ -281,7 +281,7 @@ export const unisexProducts = [
   {
     id: "u4",
     img: "https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
-    color: ["black", "white", "red", "blue", "pink"],
+    color: ["black", "orange", "red", "blue", "pink"],
     size: ["XS", "S", "M", "L", "XL"],
     tag: ["men", "women"],
     price: 15,

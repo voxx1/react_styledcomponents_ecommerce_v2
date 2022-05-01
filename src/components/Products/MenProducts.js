@@ -67,15 +67,23 @@ const MenProducts = ({ category, sort, filters }) => {
 
     return (
         <>
-            <InfoContainer>
-                <Title>See all of our men products!</Title>
-                <Desc>Click on item to see more!</Desc>
+            {filteredProducts.length === 0 ? <InfoContainer>
+                <Title>There are 0 products for those categories :(</Title>
+                <Desc>Try different one!</Desc>
             </InfoContainer>
-            <Container>
-                {filteredProducts.map((item) => (
-                    <Product item={item} key={item.id} />
-                ))}
-            </Container>
+                :
+                <>
+                    <InfoContainer>
+                        <Title>See our men products!</Title>
+                        <Desc>Click on item to see more!</Desc>
+                    </InfoContainer>
+                    <Container>
+                        {filteredProducts.map((item) => (
+                            <Product item={item} key={item.id} />
+                        ))}
+                    </Container>
+                </>
+            }
         </>
 
     );

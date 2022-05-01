@@ -8,6 +8,8 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { allProducts, unisexProducts, menProducts, womenProducts } from "../DUMMY_DATA";
+import { useDispatch, useSelector } from 'react-redux'
+import { addProduct } from "../redux/cartSlice";
 
 const Container = styled.div``;
 
@@ -39,6 +41,12 @@ const Title = styled.h2`
   color: black;
 `;
 
+const Subtitle = styled.h3`
+  font-weight: 600;
+  color: black;
+  margin-top: 20px;
+`;
+
 const Desc = styled.p`
   margin: 20px 0px;
 `;
@@ -66,15 +74,14 @@ const FilterTitle = styled.span`
   font-weight: 200;
 `;
 
-const FilterColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-  margin: 0px 5px;
-  cursor: pointer;
-  border: 1px solid black;
+
+const FilterColorSelect = styled.select`
+  margin-left: 10px;
+  padding: 5px;
 `;
+
+const FilterColorOption = styled.option``;
+
 
 const FilterSize = styled.select`
   margin-left: 10px;
@@ -123,18 +130,25 @@ const Button = styled.button`
 const Product = () => {
 
   const location = useLocation();
-  const [products, setProducts] = useState(allProducts)
+  const [products, setProducts] = useState([])
   const [singleProduct, setSingleProduct] = useState({
     color: [],
     size: [],
+    id: "",
+    img: "",
+    title: "",
+    price: null,
+    tag: []
   })
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
-
+  const [itemAdded, setItemAdded] = useState(false)
+  const dispatch = useDispatch();
+  const itemInfo = useSelector((state) => state.cart.products[0])
+  console.log(itemInfo)
 
   let productID = window.location.pathname.split("/").pop()
-
   const handleQuantity = (type) => {
     if (type === "dec") {
       quantity > 1 && setQuantity(prev => prev - 1)
@@ -150,21 +164,37 @@ const Product = () => {
       setProducts(menProducts)
     } else if (location.pathname === `/shop/women/${productID}`) {
       setProducts(womenProducts)
-    } else {
+    } else if (location.pathname === `/shop/unisex/${productID}`) {
       setProducts(unisexProducts)
     }
+  }, [location.pathname, productID, products.length])
 
-
-
-  }, [location.pathname, productID])
 
   useEffect(() => {
-    const uniqueItem = products.filter((item) => {
-      return item.id === productID
-    });
-    setSingleProduct(uniqueItem[0])
+    if (products.length !== 0) {
+      const uniqueItem = products.filter((item) => {
+        return item.id === productID
+      });
+      const newProduct = uniqueItem[0]
+      setSingleProduct({
+        id: newProduct.id,
+        color: newProduct.color,
+        size: newProduct.size,
+        tag: newProduct.tag,
+        title: newProduct.title,
+        img: newProduct.img,
+        price: newProduct.price
+      })
+    }
   }, [productID, products])
 
+  const handleClick = () => {
+    dispatch(addProduct({ ...singleProduct, color, size, quantity }))
+    setItemAdded(true)
+  }
+
+
+  console.log(singleProduct)
 
   return (
     <Container>
@@ -183,21 +213,27 @@ const Product = () => {
 
           </Desc>
           <Price>$ {singleProduct.price}</Price>
+          <Subtitle>Pick your size and color</Subtitle>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              {singleProduct.color.map((itemColor) => (
-                <FilterColor color={itemColor} key={itemColor} onClick={() => setColor(itemColor)} />
-              ))}
+              <FilterColorSelect onChange={(e) => setColor(e.target.value)}>
+                <FilterColorOption>---</FilterColorOption>
+                {singleProduct.color.map((itemColor) => (
+                  <FilterColorOption key={itemColor}>{itemColor}</FilterColorOption>
+                ))}
+              </FilterColorSelect>
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
+                <FilterSizeOption>---</FilterSizeOption>
                 {singleProduct.size.map((itemSize) => (
                   <FilterSizeOption key={itemSize}>{itemSize}</FilterSizeOption>
                 ))}
               </FilterSize>
             </Filter>
+
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
@@ -205,8 +241,10 @@ const Product = () => {
               <Amount>{quantity}</Amount>
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={handleClick}>ADD TO CART</Button>
+
           </AddContainer>
+          {itemAdded ? <span>Item was added to cart!</span> : ""}
         </InfoContainer>
       </Wrapper>
       <Newsletter />

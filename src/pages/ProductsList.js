@@ -8,7 +8,6 @@ import { mobile } from "../responsive";
 import MenProducts from "../components/Products/MenProducts";
 import WomenProducts from "../components/Products/WomenProducts";
 import UnisexProducts from "../components/Products/UnisexProducts";
-import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const Container = styled.div``;
@@ -45,7 +44,6 @@ const ProductsList = (props) => {
 
 
 
-  const location = useLocation();
   const categoryName = window.location.pathname.split("/").pop()
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("Price (asc)")
@@ -71,7 +69,7 @@ const ProductsList = (props) => {
     typeinfo = <AllProducts category={categoryName} filters={filters} sort={sort} />
   }
 
-  console.log(location)
+  console.log(categoryName)
 
   return (
     <Container>
@@ -82,17 +80,17 @@ const ProductsList = (props) => {
         <Filter>
           <FilterText>Filter Products:</FilterText>
           <Select name="color" onChange={handleFilters}>
-            <Option disabled selected>
+            <Option disabled defaultValue>
               Color
             </Option>
-            <Option>white</Option>
+            <Option>orange</Option>
             <Option>black</Option>
             <Option>red</Option>
             <Option>blue</Option>
             <Option>pink</Option>
           </Select>
           <Select name="size" onChange={handleFilters}>
-            <Option disabled selected>
+            <Option disabled defaultValue>
               Size
             </Option>
             <Option>XS</Option>
@@ -101,11 +99,19 @@ const ProductsList = (props) => {
             <Option>L</Option>
             <Option>XL</Option>
           </Select>
+          <Select name="tag" onChange={handleFilters}>
+            <Option disabled defaultValue>
+              Gender
+            </Option>
+            <Option>men</Option>
+            <Option>women</Option>
+          </Select>
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select onChange={(e) => setSort(e.target.value)}>
-            <Option value="Price (asc)" selected>Price (asc)</Option>
+            <Option disabled defaultValue>Sort by</Option>
+            <Option value="Price (asc)" defaultValue>Price (asc)</Option>
             <Option value="Price (desc)">Price (desc)</Option>
           </Select>
         </Filter>
