@@ -9,7 +9,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   ${mobile({ padding: "0px", flexDirection: "column", marginTop: "0px" })}
-  ${smallmobile({ marginTop: "-230px" })}
+  ${smallmobile({ marginTop: "-200px" })}
 
 `;
 

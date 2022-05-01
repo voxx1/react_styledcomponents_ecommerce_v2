@@ -21,13 +21,14 @@ const Wrapper = styled.div`
 
 const ImgContainer = styled.div`
   flex: 1;
+  text-align: center;
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 90vh;
+  width: 30vw;
+  height: auto;
   object-fit: cover;
-  ${mobile({ height: "40vh" })}
+  ${mobile({ height: "50vh", width: "100%" })}
 `;
 
 const InfoContainer = styled.div`
