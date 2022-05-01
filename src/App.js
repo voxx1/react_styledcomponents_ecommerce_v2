@@ -10,7 +10,7 @@ import { Routes, Route } from 'react-router-dom'
 
 function App() {
   return (
-    <div>
+    <div className='app'>
       <Routes>
         <Route path="/">
           <Route index={true} element={<Home />} />

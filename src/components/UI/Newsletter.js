@@ -1,4 +1,5 @@
 import { Send } from "@material-ui/icons";
+import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 
@@ -47,17 +48,28 @@ const Button = styled.button`
 `;
 
 const Newsletter = () => {
+
+  const [sending, setSending] = useState(false);
+  const [inputValue, setInputValue] = useState(false);
+
+
+  const emailHandler = () => {
+    setSending(true)
+  }
+
+  console.log(inputValue.length)
   return (
     <Container>
       <Title>Newsletter</Title>
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
-        <Input placeholder="Your email" />
-        <Button>
+        <Input onChange={(e) => setInputValue(e.target.value)} placeholder="Your email" />
+        <Button onClick={emailHandler}>
           <Send />
         </Button>
       </InputContainer>
-    </Container>
+      {sending && inputValue.length !== undefined && inputValue.includes("@") ? <p>Thank you for registering! You will receive notification very soon.</p> : ""}
+    </Container >
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { categories } from '../../DUMMY_DATA'
-import { mobile } from "../../responsive";
+import { mobile, smallmobile } from "../../responsive";
 import CategoryItem from "./CategoryItem";
 
 const Container = styled.div`
@@ -9,6 +9,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   ${mobile({ padding: "0px", flexDirection: "column", marginTop: "0px" })}
+  ${smallmobile({ marginTop: "-230px" })}
+
 `;
 
 const InfoContainer = styled.div`
@@ -28,6 +30,7 @@ const Title = styled.h2`
   font-size: 40px;
   margin-top: -25px;
   ${mobile({ fontSize: "25px", marginTop: "0px" })}
+  
 
 
 `;

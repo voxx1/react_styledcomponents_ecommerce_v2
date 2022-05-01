@@ -34,6 +34,8 @@ const Language = styled.span`
 const Center = styled.div`
   flex: 1;
   text-align: center;
+  ${mobile({ flex: 0, marginLeft: "10px" })}
+
 `;
 
 const Logo = styled(Link)`

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { mobile } from '../../responsive';
+import { mobile, smallmobile } from '../../responsive';
 import dummyItems from '../../DUMMY_DATA'
 import { Link } from 'react-router-dom';
 
@@ -40,7 +40,8 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   width: 55vw;
-  ${mobile({ width: "100vw" })}
+  ${mobile({ width: "100vw", height: "400px" })}
+  ${smallmobile({ height: "250px", width: "100%" })}
 
 `
 

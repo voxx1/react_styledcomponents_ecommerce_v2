@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { mobile } from "../responsive";
+import { mobile, smallmobile } from "../responsive";
 
 const Container = styled.div`
   width: 100vw;
@@ -14,6 +14,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  ${smallmobile({ width: "100%" })}
+
 `;
 
 const Wrapper = styled.div`
