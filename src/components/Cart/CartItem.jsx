@@ -92,10 +92,10 @@ const CartItem = ({ item }) => {
             <b>ID:</b> {item.id}
           </ProductId>
           <ProductColorContainer>
-            <b>Color: </b> {item.color === "" ? <p> You didn't choose any color, you will get random one.</p> : <ProductColor color={item.color} />}
+            <b>Color: </b> <ProductColor color={item.color} />
           </ProductColorContainer>
           <ProductSize>
-            <b>Size:</b> {item.size === "" ? <p> You didn't choose any size, you will get any.</p> : item.size}
+            <b>Size:</b> {item.size}
           </ProductSize>
         </Details>
       </ProductDetail>

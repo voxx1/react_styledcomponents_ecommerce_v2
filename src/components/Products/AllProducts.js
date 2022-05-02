@@ -66,7 +66,6 @@ const AllProducts = ({ category, sort, filters }) => {
 
     }, [sort])
 
-    console.log(products)
 
     return (
         <>

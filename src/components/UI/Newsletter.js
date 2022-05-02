@@ -57,7 +57,6 @@ const Newsletter = () => {
     setSending(true)
   }
 
-  console.log(inputValue.length)
   return (
     <Container>
       <Title>Newsletter</Title>

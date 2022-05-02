@@ -8,7 +8,7 @@ import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { allProducts, unisexProducts, menProducts, womenProducts } from "../DUMMY_DATA";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addProduct } from "../redux/cartSlice";
 
 const Container = styled.div``;
@@ -52,6 +52,12 @@ const Subtitle = styled.h3`
   margin-top: 20px;
 `;
 
+const SubtitleError = styled.h3`
+font-weight: 600;
+  color: red;
+  margin-bottom: 10px;
+`
+
 const Desc = styled.p`
   margin: 20px 0px;
 `;
@@ -62,7 +68,7 @@ const Price = styled.span`
 `;
 
 const FilterContainer = styled.div`
-  margin: 30px 0px;
+  margin: 20px 0px;
   display: flex;
   justify-content: flex-start;
   ${mobile({ width: "100%", justifyContent: "space-between" })}
@@ -158,10 +164,9 @@ const Product = () => {
   const [quantity, setQuantity] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
+  const [filterError, setFilterError] = useState(false)
   const [itemAdded, setItemAdded] = useState(false)
   const dispatch = useDispatch();
-  const itemInfo = useSelector((state) => state.cart.products[0])
-  console.log(itemInfo)
 
   let productID = window.location.pathname.split("/").pop()
   const handleQuantity = (type) => {
@@ -204,6 +209,14 @@ const Product = () => {
   }, [productID, products])
 
   const handleClick = () => {
+    if (color === "" || color === "---" || size === "" || size === "---") {
+      setFilterError(true)
+      setInterval(() => {
+        setFilterError(false);
+      }, 2000);
+      return
+    }
+    console.log(color, size)
     dispatch(addProduct({ ...singleProduct, color, size, quantity }))
     setItemAdded(true)
   }
@@ -248,6 +261,7 @@ const Product = () => {
             </Filter>
 
           </FilterContainer>
+          {filterError ? <SubtitleError>Choose your size and color!</SubtitleError> : null}
           <AddContainer>
             <AmountContainer>
               <Remove onClick={() => handleQuantity("dec")} />

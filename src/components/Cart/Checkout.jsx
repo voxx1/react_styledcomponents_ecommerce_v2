@@ -68,7 +68,6 @@ const Checkout = (props) => {
                 <button type='button' onClick={props.onCancel}>
                     Cancel
                 </button>
-
             </div>
             <div>
                 <img className={classes.payment} alt="payment methods" src="https://i.ibb.co/Qfvn4z6/payment.png" />
