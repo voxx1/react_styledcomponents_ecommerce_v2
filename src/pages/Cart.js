@@ -12,6 +12,7 @@ import Modal from "../components/Cart/Modal";
 import Checkout from "../components/Cart/Checkout";
 import LoadingSpinner from "../components/UI/LoadingSpinner";
 import { useDispatch } from 'react-redux'
+import { removeAll } from "../redux/cartSlice";
 
 
 const Container = styled.div``;
@@ -131,16 +132,20 @@ const Cart = () => {
   const cartItems = useSelector((state) => state.cart.products)
   const itemsQuantity = useSelector((state) => state.cart.quantity)
   const totalPrice = useSelector((state) => state.cart.total)
+  const discountAmount = useSelector((state) => state.cart.discount)
+  const shippingAmount = useSelector((state) => state.cart.shipping)
+
+  const totalAmount = Number(totalPrice - discountAmount + shippingAmount).toFixed(2)
+
   const dispatch = useDispatch();
-  const discountAmount = 5.90
-  const shippingAmount = 12.50
 
 
-  /** const resetItems = () => {
-    dispatch(increment());
+
+  const resetItems = () => {
+    dispatch(removeAll());
   }
 
-  **/
+
 
 
   const [fillingForm, setFillingForm] = useState(false)
@@ -203,7 +208,7 @@ const Cart = () => {
         <FormSubmitedText>Congratulations! Your order was sent! :)</FormSubmitedText>
         <div >
           <Link style={{ display: "flex" }} to="/">
-            <FormSubmitedButton >Close</FormSubmitedButton>
+            <FormSubmitedButton onClick={resetItems} >Close</FormSubmitedButton>
           </Link>
         </div>
       </Modal>
@@ -250,7 +255,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {itemsQuantity === 0 ? 0 : totalPrice - discountAmount + shippingAmount}</SummaryItemPrice>
+              <SummaryItemPrice>$ {itemsQuantity === 0 ? 0 : totalAmount}</SummaryItemPrice>
             </SummaryItem>
             {checkOutAuthorisation}
           </Summary>

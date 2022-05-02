@@ -1,8 +1,14 @@
 import classes from "./Checkout.module.css"
 import { useRef } from "react";
+import { useSelector } from "react-redux";
 
 const Checkout = (props) => {
 
+    const totalPrice = useSelector((state) => state.cart.total)
+    const discountAmount = useSelector((state) => state.cart.discount)
+    const shippingAmount = useSelector((state) => state.cart.shipping)
+
+    const totalAmount = totalPrice - discountAmount + shippingAmount
 
     const nameInputRef = useRef();
     const surnameInputRef = useRef();
@@ -25,6 +31,7 @@ const Checkout = (props) => {
             street: enteredStreet,
             postal: enteredPostal,
             email: enteredEmail,
+            totalOrderCost: totalAmount,
         }
 
         props.onSubmit(enteredInfo)
@@ -54,7 +61,7 @@ const Checkout = (props) => {
                 <input required name="zip" ref={postalInputRef} type="text" pattern="[0-9]{5}" />
             </div>
             <div className={classes.control}>
-                <p>Total amount: </p>
+                <p>Total amount: ${Number(totalAmount).toFixed(2)}</p>
             </div>
             <div className={classes.actions}>
                 <button type="submit" className={classes.submit}>Confirm order</button>
