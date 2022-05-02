@@ -40,7 +40,7 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   width: 55vw;
-  ${mobile({ width: "100vw", height: "400px" })}
+  ${mobile({ width: "100vw", height: "320px" })}
   ${smallmobile({ height: "250px", width: "100%" })}
 
 `

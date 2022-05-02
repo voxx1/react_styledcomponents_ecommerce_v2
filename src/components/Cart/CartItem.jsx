@@ -6,6 +6,7 @@ import { mobile } from "../../responsive";
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 10px;
   ${mobile({ flexDirection: "column" })}
 `;
 
@@ -79,36 +80,36 @@ const Hr = styled.hr`
 
 const CartItem = ({ item }) => {
 
-    return (
-        <Product>
-            <ProductDetail>
-                <Image src={item.img} />
-                <Details>
-                    <ProductName>
-                        <b>Product:</b> {item.title}
-                    </ProductName>
-                    <ProductId>
-                        <b>ID:</b> {item.id}
-                    </ProductId>
-                    <ProductColorContainer>
-                        <b>Color: </b> {item.color === "" ? <p> You didn't choose any color, you will get random one.</p> : <ProductColor color={item.color} />}
-                    </ProductColorContainer>
-                    <ProductSize>
-                        <b>Size:</b> {item.size === "" ? <p> You didn't choose any size, you will get any.</p> : item.size}
-                    </ProductSize>
-                </Details>
-            </ProductDetail>
-            <PriceDetail>
-                <ProductAmountContainer>
-                    <ProductAmount>
-                        <b>Quantity: {item.quantity}</b></ProductAmount>
-                </ProductAmountContainer>
-                <ProductPrice>$ {item.price}</ProductPrice>
-            </PriceDetail>
-            <Hr />
-        </Product>
+  return (
+    <Product>
+      <ProductDetail>
+        <Image src={item.img} />
+        <Details>
+          <ProductName>
+            <b>Product:</b> {item.title}
+          </ProductName>
+          <ProductId>
+            <b>ID:</b> {item.id}
+          </ProductId>
+          <ProductColorContainer>
+            <b>Color: </b> {item.color === "" ? <p> You didn't choose any color, you will get random one.</p> : <ProductColor color={item.color} />}
+          </ProductColorContainer>
+          <ProductSize>
+            <b>Size:</b> {item.size === "" ? <p> You didn't choose any size, you will get any.</p> : item.size}
+          </ProductSize>
+        </Details>
+      </ProductDetail>
+      <PriceDetail>
+        <ProductAmountContainer>
+          <ProductAmount>
+            <b>Quantity: {item.quantity}</b></ProductAmount>
+        </ProductAmountContainer>
+        <ProductPrice>$ {item.price}</ProductPrice>
+      </PriceDetail>
+      <Hr />
+    </Product>
 
-    )
+  )
 }
 
 export default CartItem

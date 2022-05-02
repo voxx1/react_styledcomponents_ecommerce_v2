@@ -6,15 +6,18 @@ import { BrowserRouter } from 'react-router-dom'
 import ScrollToTop from './components/UI/ScrollToTop';
 import { store } from '../src/redux/store';
 import { Provider } from 'react-redux';
+import { AuthContextProvider } from './store/auth-context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <ScrollToTop />
+    <AuthContextProvider>
       <Provider store={store}>
-        <App />
+        <BrowserRouter>
+          <ScrollToTop />
+          <App />
+        </BrowserRouter>
       </Provider>
-    </BrowserRouter>
+    </AuthContextProvider>
   </React.StrictMode>
 );

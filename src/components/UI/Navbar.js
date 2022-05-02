@@ -5,10 +5,12 @@ import styled from "styled-components";
 import { mobile } from "../../responsive";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import AuthContext from '../../store/auth-context';
+import { useContext } from 'react'
 
 const Container = styled.div`
   height: 60px;
-  ${mobile({ height: "50px" })}
+  ${mobile({ height: "40px" })}
 `;
 
 const Wrapper = styled.div`
@@ -43,7 +45,7 @@ const Logo = styled(Link)`
   font-size: 30px;
   color: black;
   text-decoration: none;
-  ${mobile({ fontSize: "24px" })}
+  ${mobile({ fontSize: "17px" })}
 `;
 const Right = styled.div`
   flex: 1;
@@ -59,18 +61,24 @@ const MenuItem = styled(Link)`
   color: black;
   text-decoration: none;
   margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  ${mobile({ fontSize: "11px", marginLeft: "10px" })}
 `;
+
 
 const Navbar = () => {
 
   const quantity = useSelector((state) => state.cart.quantity)
+  const authCtx = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  }
 
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Language>EN</Language>
+          <Language>ENG</Language>
         </Left>
         <Center>
           <Logo to="/">ENVA.</Logo>
@@ -80,12 +88,19 @@ const Navbar = () => {
           <MenuItem to="/">HOME</MenuItem>
           <MenuItem to="/shop">SHOP</MenuItem>
           <MenuItem to="/cart">CART</MenuItem>
-          <MenuItem to="/register">REGISTER</MenuItem>
-
-          <MenuItem to="/login">SIGN IN</MenuItem>
+          {authCtx.isLoggedIn ?
+            <>
+              <MenuItem onClick={logoutHandler} to="/">LOGOUT</MenuItem>
+            </>
+            :
+            <>
+              <MenuItem to="/register">REGISTER</MenuItem>
+              <MenuItem to="/login">SIGN IN</MenuItem>
+            </>
+          }
           <MenuItem to="/cart">
             <Badge overlap="rectangular" badgeContent={quantity} color="primary">
-              <ShoppingCartOutlined />
+              <ShoppingCartOutlined style={{ color: 'teal' }} />
             </Badge>
           </MenuItem>
         </Right>

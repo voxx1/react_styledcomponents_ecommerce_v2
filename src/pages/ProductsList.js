@@ -69,8 +69,6 @@ const ProductsList = (props) => {
     typeinfo = <AllProducts category={categoryName} filters={filters} sort={sort} />
   }
 
-  console.log(categoryName)
-
   return (
     <Container>
       <Navbar />

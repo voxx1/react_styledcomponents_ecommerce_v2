@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { mobile, smallmobile } from "../responsive";
+import AuthContext from '../store/auth-context';
+import { useRef, useState, useContext } from 'react'
+import { useNavigate, Link } from "react-router-dom";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const Container = styled.div`
   width: 100vw;
@@ -54,27 +58,105 @@ const Button = styled.button`
   background-color: teal;
   color: white;
   cursor: pointer;
+  display: block;
+
+`;
+
+const Navigation = styled.p`
+  margin: 15px 0px;
+  font-size: 12px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: black;
+  display: block;
+
 `;
 
 const Register = () => {
+
+  const nameInputRef = useRef();
+  const lastNameInputRef = useRef();
+  const usernameInputRef = useRef();
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  let navigate = useNavigate();
+
+  const authCtx = useContext(AuthContext);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+    const enteredName = nameInputRef.current.value;
+    const enteredLastname = lastNameInputRef.current.value;
+    const enteredUsername = usernameInputRef.current.value;
+
+
+    setIsLoading(true);
+    const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDfBQRcSA2FoRMFgLJs_RnL-7tBN4KisH4';
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        name: enteredName,
+        lastname: enteredLastname,
+        username: enteredUsername,
+        returnSecureToken: true,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = 'Authentication failed!';
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        authCtx.login(data.idToken);
+        navigate("/")
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+
+
+  };
+
   return (
     <Container>
-      <Wrapper>
-        <Title>CREATE AN ACCOUNT</Title>
-        <Form>
-          <Input placeholder="name" />
-          <Input placeholder="last name" />
-          <Input placeholder="username" />
-          <Input placeholder="email" />
-          <Input placeholder="password" />
-          <Input placeholder="confirm password" />
-          <Agreement>
-            By creating an account, I consent to the processing of my personal
-            data in accordance with the <b>PRIVACY POLICY</b>
-          </Agreement>
-          <Button>CREATE</Button>
-        </Form>
-      </Wrapper>
+      {isLoading ? <LoadingSpinner /> :
+        <Wrapper>
+          <Title>CREATE AN ACCOUNT</Title>
+          <Form onSubmit={submitHandler}>
+            <Input ref={nameInputRef} type="text" id="name" placeholder="name" />
+            <Input ref={lastNameInputRef} type="text" id="lastname" placeholder="last name" />
+            <Input ref={usernameInputRef} type="text" id="username" placeholder="username" />
+            <Input ref={passwordInputRef} required id="password" type="password" placeholder="password" />
+            <Input ref={emailInputRef} required id="email" type="email" placeholder="email" />
+            <Agreement>
+              By creating an account, I consent to the processing of my personal
+              data in accordance with the <b>PRIVACY POLICY</b>
+            </Agreement>
+
+            <Button>CREATE</Button>
+          </Form>
+          <Link to="/">
+            <Navigation>GO BACK TO MAIN PAGE</Navigation>
+          </Link>
+        </Wrapper>
+      }
     </Container>
   );
 };

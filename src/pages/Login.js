@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { mobile, smallmobile } from "../responsive";
+import AuthContext from '../store/auth-context';
+import { useRef, useState, useContext } from 'react'
+import { useNavigate, Link } from "react-router-dom";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const Container = styled.div`
   width: 100vw;
@@ -52,26 +56,87 @@ const Button = styled.button`
   margin-bottom: 10px;
 `;
 
-const Link = styled.a`
+const Navigation = styled.a`
   margin: 5px 0px;
   font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
+  color: black;
+  
 `;
 
 const Login = () => {
+
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+  let navigate = useNavigate();
+
+  const authCtx = useContext(AuthContext);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    setIsLoading(true);
+    const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDfBQRcSA2FoRMFgLJs_RnL-7tBN4KisH4';
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = 'Authentication failed!';
+
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        authCtx.login(data.idToken);
+        navigate("/")
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
   return (
     <Container>
-      <Wrapper>
-        <Title>SIGN IN</Title>
-        <Form>
-          <Input placeholder="username" />
-          <Input placeholder="password" />
-          <Button>LOGIN</Button>
-          <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-          <Link>CREATE A NEW ACCOUNT</Link>
-        </Form>
-      </Wrapper>
+      {isLoading ? <LoadingSpinner /> :
+
+        <Wrapper>
+          <Title>SIGN IN</Title>
+          <Form onSubmit={submitHandler}>
+            <Input ref={emailInputRef} required id="email" type="email" placeholder="email" />
+            <Input ref={passwordInputRef} required id="password" type="password" placeholder="password" />
+            <Button>LOGIN</Button>
+
+            <Link to="/register">
+              <Navigation>CREATE A NEW ACCOUNT</Navigation>
+            </Link>
+            <Link to="/">
+              <Navigation>GO BACK TO MAIN PAGE</Navigation>
+            </Link>
+            <p style={{ marginTop: "5px" }}>For testing purpose use email test@test.pl and password test123 or create your own in register page :)</p>
+          </Form>
+        </Wrapper>
+      }
+
     </Container>
   );
 };

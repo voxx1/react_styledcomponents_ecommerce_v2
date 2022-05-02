@@ -6,6 +6,8 @@ import { mobile } from "../responsive";
 import { useSelector } from "react-redux";
 import CartItem from "../components/Cart/CartItem";
 import { Link } from "react-router-dom";
+import AuthContext from '../store/auth-context';
+import { useContext } from 'react'
 
 const Container = styled.div``;
 
@@ -89,6 +91,8 @@ const Button = styled.button`
 
 const Cart = () => {
 
+  const authCtx = useContext(AuthContext);
+
   const cartItems = useSelector((state) => state.cart.products)
   const itemsQuantity = useSelector((state) => state.cart.quantity)
   const totalPrice = useSelector((state) => state.cart.total)
@@ -109,7 +113,7 @@ const Cart = () => {
           <TopTexts>
             <TopText>Shopping Bag({itemsQuantity})</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          {authCtx.isLoggedIn ? <TopButton type="filled">CHECKOUT NOW</TopButton> : <Link to="/login"> <TopButton type="filled">CHECKOUT NOW</TopButton> </Link>}
         </Top>
         <Bottom>
           {itemsQuantity === 0 ? <Info ><p style={{ padding: "20px" }}>Your cart is empty! Add items to proceed.</p> </Info> : <Info>
