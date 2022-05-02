@@ -7,7 +7,12 @@ import { useSelector } from "react-redux";
 import CartItem from "../components/Cart/CartItem";
 import { Link } from "react-router-dom";
 import AuthContext from '../store/auth-context';
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
+import Modal from "../components/Cart/Modal";
+import Checkout from "../components/Cart/Checkout";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
+import { useDispatch } from 'react-redux'
+
 
 const Container = styled.div``;
 
@@ -26,6 +31,8 @@ const Top = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+  ${mobile({ padding: "10px" })}
+
 `;
 
 const TopButton = styled.button`
@@ -36,6 +43,7 @@ const TopButton = styled.button`
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
   color: ${(props) => props.type === "filled" && "white"};
+  ${mobile({ margin: "0px 5px" })}
 `;
 
 const TopTexts = styled.div`
@@ -81,23 +89,126 @@ const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
+const ErrorText = styled.p`
+font-weight: bold;
+font-size: 16px;
+text-align: center;
+margin-top: 10px;
+color: red;
+`
+
 const Button = styled.button`
   width: 100%;
   padding: 10px;
   background-color: black;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `;
+
+const FormSubmitedText = styled.h2`
+font-weight: bold;
+margin-bottom: 20px;
+text-align: center;
+
+${mobile({ fontSize: "14px" })}
+`
+
+const FormSubmitedButton = styled.button`
+width: 50%;
+padding: 10px;
+background-color: black;
+color: white;
+font-weight: 600;
+margin: 0 auto;
+cursor: pointer;
+`
+
 
 const Cart = () => {
 
   const authCtx = useContext(AuthContext);
-
   const cartItems = useSelector((state) => state.cart.products)
   const itemsQuantity = useSelector((state) => state.cart.quantity)
   const totalPrice = useSelector((state) => state.cart.total)
+  const dispatch = useDispatch();
   const discountAmount = 5.90
   const shippingAmount = 12.50
+
+
+  /** const resetItems = () => {
+    dispatch(increment());
+  }
+
+  **/
+
+
+  const [fillingForm, setFillingForm] = useState(false)
+  const [emptyCart, setEmptyCart] = useState(false)
+  const [isSending, setIsSending] = useState(false);
+  const [formSubmited, setFormSubmited] = useState(false)
+
+
+  const changeOrderState = () => {
+    setFillingForm(!fillingForm)
+  }
+
+  const showError = () => {
+    setEmptyCart(true)
+    setInterval(() => {
+      setEmptyCart(false);
+    }, 3000);
+  }
+
+
+  let checkOutAuthorisation = <Link to="/login"> <Button type="filled">CHECKOUT NOW</Button> </Link>
+  if (authCtx.isLoggedIn && cartItems.length !== 0) {
+    checkOutAuthorisation = <Button onClick={changeOrderState} type="filled">CHECKOUT NOW</Button>
+  } else if (cartItems.length === 0 && authCtx.isLoggedIn) {
+    checkOutAuthorisation = <>
+      <Button onClick={showError} type="filled">CHECKOUT NOW</Button>
+      {emptyCart ? <ErrorText>Your cart is empty!</ErrorText> : ""}
+    </>
+  }
+
+  async function submitOrderHandler(userDetails) {
+    setIsSending(true)
+    const response = await fetch("https://react-h-1bba3-default-rtdb.europe-west1.firebasedatabase.app/cartOrder.json", {
+      method: "POST",
+      body: JSON.stringify({
+        userDetails: userDetails,
+        cartItems: cartItems
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+    });
+    const data = await response.json();
+    console.log(data)
+    setIsSending(false)
+    setFormSubmited(true)
+  }
+
+  let cartModalContent = <Modal>
+    <div>
+      {isSending ? <LoadingSpinner /> : <Checkout onSubmit={submitOrderHandler} onCancel={changeOrderState} />}
+
+    </div>
+  </Modal>
+
+  if (formSubmited) {
+    cartModalContent =
+      <Modal>
+        <FormSubmitedText>Congratulations! Your order was sent! :)</FormSubmitedText>
+        <div >
+          <Link style={{ display: "flex" }} to="/">
+            <FormSubmitedButton >Close</FormSubmitedButton>
+          </Link>
+        </div>
+      </Modal>
+  }
+
 
   return (
     <Container>
@@ -113,14 +224,16 @@ const Cart = () => {
           <TopTexts>
             <TopText>Shopping Bag({itemsQuantity})</TopText>
           </TopTexts>
-          {authCtx.isLoggedIn ? <TopButton type="filled">CHECKOUT NOW</TopButton> : <Link to="/login"> <TopButton type="filled">CHECKOUT NOW</TopButton> </Link>}
+          <Link to="/">
+            <TopButton >BACK TO HOME PAGE</TopButton>
+          </Link>
+
         </Top>
         <Bottom>
           {itemsQuantity === 0 ? <Info ><p style={{ padding: "20px" }}>Your cart is empty! Add items to proceed.</p> </Info> : <Info>
             {cartItems.map((item) => <CartItem key={item.id} item={item} />)}
           </Info>
           }
-
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
             <SummaryItem>
@@ -139,8 +252,9 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>$ {itemsQuantity === 0 ? 0 : totalPrice - discountAmount + shippingAmount}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            {checkOutAuthorisation}
           </Summary>
+          {fillingForm ? cartModalContent : ""}
         </Bottom>
       </Wrapper>
       <Footer />

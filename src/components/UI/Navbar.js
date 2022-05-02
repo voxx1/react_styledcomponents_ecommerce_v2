@@ -95,7 +95,7 @@ const Navbar = () => {
             :
             <>
               <MenuItem to="/register">REGISTER</MenuItem>
-              <MenuItem to="/login">SIGN IN</MenuItem>
+              <MenuItem to="/login">LOGIN</MenuItem>
             </>
           }
           <MenuItem to="/cart">

@@ -209,8 +209,6 @@ const Product = () => {
   }
 
 
-  console.log(singleProduct)
-
   return (
     <Container>
       <Navbar />

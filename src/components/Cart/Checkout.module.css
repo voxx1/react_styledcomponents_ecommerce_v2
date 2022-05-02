@@ -1,0 +1,77 @@
+.form {
+    
+    margin: 1rem 1rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.control {
+    margin-bottom: 0.5rem;
+}
+
+.control label {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    display: block;
+    font-size: 18px;
+}
+
+.control input {
+    font: inherit;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 95%;
+    max-width: 100%;
+    
+}
+
+.control p {
+    font-weight: bold;
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 10px;
+}
+
+.actions button {
+    font: inherit;
+    color: black;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    padding: 0.5rem 2rem;
+}
+
+.actions button:hover,
+.actions button:active {
+    background-color: hsl(180, 17%, 53%);
+    color: white;
+}
+
+.actions .submit {
+    border: 1px solid teal;
+    background-color: teal;
+    color: white;
+}
+
+.actions .submit:hover,
+.actions .submit:active {
+    background-color: hsl(180, 17%, 53%);
+    color: white;
+}
+
+.payment {
+    width: 50%;
+    margin-top: 30px;
+}
+
+@media (max-width: 768px) {
+    .form {
+        margin: 1rem 1rem 1rem 0;
+    }
+}
