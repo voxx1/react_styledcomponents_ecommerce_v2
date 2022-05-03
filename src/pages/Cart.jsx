@@ -167,6 +167,7 @@ const Cart = () => {
 
 
   let checkOutAuthorisation = <Link to="/login"> <Button type="filled">CHECKOUT NOW</Button> </Link>
+
   if (authCtx.isLoggedIn && cartItems.length !== 0) {
     checkOutAuthorisation = <Button onClick={changeOrderState} type="filled">CHECKOUT NOW</Button>
   } else if (cartItems.length === 0 && authCtx.isLoggedIn) {

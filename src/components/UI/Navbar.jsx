@@ -25,6 +25,8 @@ const Left = styled.div`
   flex: 1;
   display: flex;
   align-items: center;
+  color: teal;
+  font-weight: bold;
   ${mobile({ display: "none" })}
 `;
 

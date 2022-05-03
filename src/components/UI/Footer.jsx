@@ -8,6 +8,9 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../../responsive";
+import { Link } from 'react-router-dom'
+import AuthContext from '../../store/auth-context';
+import { useContext } from 'react'
 
 const Container = styled.div`
     display: flex;
@@ -62,10 +65,11 @@ const List = styled.ul`
     flex-wrap: wrap;
   `;
 
-const ListItem = styled.li`
+const ListItem = styled(Link)`
     width: 50%;
     margin-bottom: 10px;
     cursor: pointer;
+    color: black;
     &:hover {
       color: teal;
     }
@@ -92,6 +96,13 @@ const Payment = styled.img`
   `;
 
 const Footer = () => {
+
+  const authCtx = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    authCtx.logout();
+  }
+
   return (
     <Container>
       <Left>
@@ -114,14 +125,22 @@ const Footer = () => {
       <Center>
         <Title>Useful Links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
-          <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
+          <ListItem to="/">Home</ListItem>
+          <ListItem to="/cart">Cart</ListItem>
+          <ListItem to="/shop">All items</ListItem>
+          <ListItem to="/shop/men">Man Fashion</ListItem>
+          <ListItem to="/shop/women">Woman Fashion</ListItem>
+          <ListItem to="/shop/unisex">Unisex Fashion</ListItem>
+          {authCtx.isLoggedIn ?
+            <>
+              <ListItem onClick={logoutHandler} to="/">Logout</ListItem>
+            </>
+            :
+            <>
+              <ListItem to="/login">Login</ListItem>
+              <ListItem to="/register">Register</ListItem>
+            </>
+          }
         </List>
       </Center>
       <Right>

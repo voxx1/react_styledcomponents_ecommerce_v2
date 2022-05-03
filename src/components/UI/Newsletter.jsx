@@ -47,17 +47,46 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const AddedEmail = styled.span`
+font-weight: bold;
+color: teal;
+text: center;
+margin-top: 10px;
+${mobile({ display: "block" })}
+`
+
 const Newsletter = () => {
 
   const [sending, setSending] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
 
+  async function submitEmailHandler(userEmail) {
+    const response = await fetch("https://react-h-1bba3-default-rtdb.europe-west1.firebasedatabase.app/newsletterEmails.json", {
+      method: "POST",
+      body: JSON.stringify({
+        userEmail: userEmail,
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+
+    });
+    const data = await response.json();
+    console.log(data)
+  }
+
+
   const emailHandler = () => {
     if (inputValue === "" || !inputValue.includes("@")) {
       return
     } else {
+      submitEmailHandler(inputValue);
+      setInputValue("")
       setSending(true)
+      setInterval(() => {
+        setSending(false);
+      }, 3000);
     }
   }
 
@@ -66,12 +95,12 @@ const Newsletter = () => {
       <Title>Newsletter</Title>
       <Desc>Get timely updates from your favorite products.</Desc>
       <InputContainer>
-        <Input onChange={(e) => setInputValue(e.target.value)} placeholder="Your email" />
+        <Input onChange={(e) => setInputValue(e.target.value)} value={inputValue} placeholder="Your email" />
         <Button onClick={emailHandler}>
           <Send />
         </Button>
       </InputContainer>
-      {sending ? <p>Thank you for registering! You will receive notification very soon.</p> : ""}
+      {sending ? <AddedEmail>Thank you for registering! You will receive notification very soon.</AddedEmail> : ""}
     </Container >
   );
 };

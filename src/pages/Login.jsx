@@ -117,15 +117,14 @@ const Login = () => {
 
   return (
     <Container>
-      {isLoading ? <LoadingSpinner /> :
-
+      {isLoading ? <LoadingSpinner />
+        :
         <Wrapper>
           <Title>SIGN IN</Title>
           <Form onSubmit={submitHandler}>
             <Input ref={emailInputRef} required id="email" type="email" placeholder="email" />
             <Input ref={passwordInputRef} required id="password" type="password" placeholder="password" />
             <Button>LOGIN</Button>
-
             <Link to="/register">
               <Navigation>CREATE A NEW ACCOUNT</Navigation>
             </Link>
@@ -136,7 +135,6 @@ const Login = () => {
           </Form>
         </Wrapper>
       }
-
     </Container>
   );
 };

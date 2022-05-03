@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import { mobile } from "../../responsive";
 
-
-
 const Product = styled.div`
   display: flex;
   justify-content: space-between;
@@ -41,7 +39,7 @@ const ProductColor = styled.p`
 
 const ProductColorContainer = styled.span`
 margin: 10px 0px;
-`
+`;
 
 const ProductSize = styled.span``;
 
@@ -77,9 +75,7 @@ const Hr = styled.hr`
   height: 1px;
 `;
 
-
 const CartItem = ({ item }) => {
-
   return (
     <Product>
       <ProductDetail>
@@ -102,14 +98,14 @@ const CartItem = ({ item }) => {
       <PriceDetail>
         <ProductAmountContainer>
           <ProductAmount>
-            <b>Quantity: {item.quantity}</b></ProductAmount>
+            <b>Quantity: {item.quantity}</b>
+          </ProductAmount>
         </ProductAmountContainer>
         <ProductPrice>$ {item.price}</ProductPrice>
       </PriceDetail>
       <Hr />
     </Product>
+  );
+};
 
-  )
-}
-
-export default CartItem
+export default CartItem;

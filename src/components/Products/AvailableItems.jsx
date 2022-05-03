@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Product from "./Product";
-import { mobile } from "../../responsive";
+import { mobile } from '../../responsive';
 import { useState, useEffect } from "react";
 import LoadingSpinner from "../UI/LoadingSpinner";
 
@@ -38,19 +38,20 @@ const Desc = styled.p`
   letter-spacing: 3px;
 `;
 
-const WomenProducts = ({ category, sort, filters }) => {
+const AvailableItems = ({ category, sort, filters }) => {
 
-    const [products, setProducts] = useState([])
-    const [filteredProducts, setFilteredProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(null)
     const [error, setError] = useState(null)
+    const [products, setProducts] = useState([])
+    const [filteredProducts, setFilteredProducts] = useState([]);
+
 
     useEffect(() => {
         const fetchAllProducts = async () => {
             setIsLoading(true)
             setError(null)
             try {
-                const response = await fetch("https://react-h-1bba3-default-rtdb.europe-west1.firebasedatabase.app/allCategories/-N18ZJjwSBrX7Qc-qbFH/womenProducts.json")
+                const response = await fetch(`https://react-h-1bba3-default-rtdb.europe-west1.firebasedatabase.app/allCategories/-N18ZJjwSBrX7Qc-qbFH/${category}Products.json`)
                 if (!response.ok) {
                     throw new Error("Failed to load items! :(");
                 }
@@ -72,12 +73,13 @@ const WomenProducts = ({ category, sort, filters }) => {
             } catch (error) {
                 setError(error.message)
                 console.log(error)
-
             }
             setIsLoading(false)
         }
         fetchAllProducts();
-    }, [])
+    }, [category])
+
+
 
     useEffect(() => {
 
@@ -102,6 +104,7 @@ const WomenProducts = ({ category, sort, filters }) => {
 
     }, [sort])
 
+
     let productItems = <LoadingSpinner />
 
     if (isLoading === false && error === null) {
@@ -118,7 +121,7 @@ const WomenProducts = ({ category, sort, filters }) => {
     return (
         <>
             <InfoContainer>
-                <Title>See all of our women products!</Title>
+                {category === "all" ? <Title>See all of our products!</Title> : <Title>See all of our {category} products!</Title>}
                 <Desc>Click on item to see more!</Desc>
             </InfoContainer>
             {productItems}
@@ -129,4 +132,4 @@ const WomenProducts = ({ category, sort, filters }) => {
     );
 };
 
-export default WomenProducts;
+export default AvailableItems;

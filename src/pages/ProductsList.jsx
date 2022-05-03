@@ -1,14 +1,11 @@
 import styled from "styled-components";
 import Navbar from "../components/UI/Navbar";
 import Annoucement from "../components/UI/Annoucement";
-import AllProducts from "../components/Products/AllProducts";
 import Newsletter from "../components/UI/Newsletter"
 import Footer from "../components/UI/Footer";
 import { mobile } from "../responsive";
-import MenProducts from "../components/Products/MenProducts";
-import WomenProducts from "../components/Products/WomenProducts";
-import UnisexProducts from "../components/Products/UnisexProducts";
 import { useState } from "react";
+import AvailableItems from "../components/Products/AvailableItems";
 
 const Container = styled.div``;
 
@@ -42,8 +39,6 @@ const Option = styled.option``;
 
 const ProductsList = (props) => {
 
-
-
   const categoryName = window.location.pathname.split("/").pop()
   const [filters, setFilters] = useState({});
   const [sort, setSort] = useState("Price (asc)")
@@ -56,17 +51,10 @@ const ProductsList = (props) => {
     })
   }
 
-  let typeinfo
+  let typeinfo = <AvailableItems category={"all"} filters={filters} sort={sort} />
 
-  if (props.type === "men") {
-    typeinfo = <MenProducts category={categoryName} filters={filters} sort={sort} />
-  } else if (props.type === "women") {
-    typeinfo = <WomenProducts category={categoryName} filters={filters} sort={sort} />
-  } else if (props.type === "unisex") {
-    typeinfo = <UnisexProducts category={categoryName} filters={filters} sort={sort} />
-  }
-  else {
-    typeinfo = <AllProducts category={categoryName} filters={filters} sort={sort} />
+  if (categoryName !== "shop") {
+    typeinfo = <AvailableItems category={categoryName} filters={filters} sort={sort} />
   }
 
   return (
