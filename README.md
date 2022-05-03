@@ -1,4 +1,4 @@
-# Project created to practise styled-components, data fetching, Redux Toolkit and React overall. #[LIVE VERSION](https://lighthearted-dragon-d35c6e.netlify.app/)
+# Project created to practise styled-components, data fetching, Redux Toolkit and React overall. [LIVE VERSION](https://lighthearted-dragon-d35c6e.netlify.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
