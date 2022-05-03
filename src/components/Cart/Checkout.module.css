@@ -21,7 +21,7 @@
     font: inherit;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 95%;
+    width: 99%;
     max-width: 100%;
     
 }
@@ -72,6 +72,6 @@
 
 @media (max-width: 768px) {
     .form {
-        margin: 1rem 1rem 1rem 0;
+        margin: 1rem;
     }
 }
