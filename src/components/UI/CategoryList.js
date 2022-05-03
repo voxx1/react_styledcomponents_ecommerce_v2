@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { categories } from '../../DUMMY_DATA'
 import { mobile, smallmobile } from "../../responsive";
 import CategoryItem from "./CategoryItem";
 
@@ -42,6 +41,27 @@ const Desc = styled.p`
   letter-spacing: 3px;
 `;
 
+const DUMMY_CATEGORIES = [
+  {
+    id: "c1",
+    img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    title: "MEN",
+    type: 'men'
+  },
+  {
+    id: "c2",
+    img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    title: "WOMEN",
+    type: "women"
+  },
+  {
+    id: "c3",
+    img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+    title: "UNISEX",
+    type: 'unisex'
+  },
+];
+
 const CategoryList = () => {
   return (
     <Container>
@@ -50,7 +70,7 @@ const CategoryList = () => {
         <Desc>Click on any to see more!</Desc>
       </InfoContainer>
       <ItemsWrapper>
-        {categories.map((item) => (
+        {DUMMY_CATEGORIES.map((item) => (
           <CategoryItem item={item} key={item.id} />
         ))}
       </ItemsWrapper>

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { mobile, smallmobile } from '../../responsive';
-import dummyItems from '../../DUMMY_DATA'
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
@@ -73,11 +72,11 @@ const Slider = () => {
     <Container>
       <Wrapper>
         <ImageContainer>
-          <Image src={dummyItems[0].img} />
+          <Image src="https://media.istockphoto.com/photos/shopping-time-young-women-shopping-together-consumerism-fashion-picture-id1194744301?k=20&m=1194744301&s=170667a&w=0&h=M-vLEm33tChlo7OtfzqmRqlFqgnu_QxO9ChA5k43zhI=" />
         </ImageContainer>
         <InfoContainer>
-          <Title>{dummyItems[0].title}</Title>
-          <Desc>{dummyItems[0].desc}</Desc>
+          <Title>Get your new clothes today!</Title>
+          <Desc>We are launching our ner collection of best clothes and shoes!</Desc>
           <Link to="/shop">
             <Button>SHOP NOW</Button>
           </Link>

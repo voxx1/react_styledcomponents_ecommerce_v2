@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { unisexProducts } from "../../DUMMY_DATA";
 import Product from "./Product";
 import { mobile } from "../../responsive";
 import { useState, useEffect } from "react";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 
 const Container = styled.div`
@@ -40,8 +40,44 @@ const Desc = styled.p`
 
 const UnisexProducts = ({ category, sort, filters }) => {
 
-    const [products, setProducts] = useState(unisexProducts)
+    const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(null)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        const fetchAllProducts = async () => {
+            setIsLoading(true)
+            setError(null)
+            try {
+                const response = await fetch("https://react-h-1bba3-default-rtdb.europe-west1.firebasedatabase.app/allCategories/-N18ZJjwSBrX7Qc-qbFH/unisexProducts.json")
+                if (!response.ok) {
+                    throw new Error("Failed to load items! :(");
+                }
+                const data = await response.json();
+                const transformedProducts = [];
+
+                for (const key in data) {
+                    transformedProducts.push({
+                        id: data[key].id,
+                        title: data[key].title,
+                        price: data[key].price,
+                        color: data[key].color,
+                        size: data[key].size,
+                        tag: data[key].tag,
+                        img: data[key].img,
+                    })
+                }
+                setProducts(transformedProducts)
+            } catch (error) {
+                setError(error.message)
+                console.log(error)
+
+            }
+            setIsLoading(false)
+        }
+        fetchAllProducts();
+    }, [])
 
     useEffect(() => {
 
@@ -66,27 +102,30 @@ const UnisexProducts = ({ category, sort, filters }) => {
 
     }, [sort])
 
+    let productItems = <LoadingSpinner />
+
+    if (isLoading === false && error === null) {
+        productItems =
+            <>
+                <Container>
+                    {filteredProducts.map((item) => (
+                        <Product item={item} key={item.id} />
+                    ))}
+                </Container>
+            </>
+    }
+
     return (
         <>
+            <InfoContainer>
+                <Title>See all of our women products!</Title>
+                <Desc>Click on item to see more!</Desc>
+            </InfoContainer>
+            {productItems}
             {filteredProducts.length === 0 ? <InfoContainer>
                 <Title>There are 0 products for those categories :(</Title>
-                <Desc>Try different one!</Desc>
-            </InfoContainer>
-                :
-                <>
-                    <InfoContainer>
-                        <Title>See our unisex products!</Title>
-                        <Desc>Click on item to see more!</Desc>
-                    </InfoContainer>
-                    <Container>
-                        {filteredProducts.map((item) => (
-                            <Product item={item} key={item.id} />
-                        ))}
-                    </Container>
-                </>
-            }
+            </InfoContainer> : ""}
         </>
-
     );
 };
 

@@ -7,9 +7,9 @@ import Newsletter from "../components/UI/Newsletter";
 import { mobile } from "../responsive";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { allProducts, unisexProducts, menProducts, womenProducts } from "../DUMMY_DATA";
 import { useDispatch } from 'react-redux'
 import { addProduct } from "../redux/cartSlice";
+import LoadingSpinner from "../components/UI/LoadingSpinner";
 
 const Container = styled.div``;
 
@@ -86,7 +86,9 @@ const FilterTitle = styled.span`
 `;
 
 const AddedItem = styled.span`
-${mobile({ textAlign: "center", display: "block" })}
+font-weight: bold;
+color: teal;
+${mobile({ textAlign: "start", display: "block" })}
 
 `
 
@@ -166,6 +168,9 @@ const Product = () => {
   const [size, setSize] = useState("");
   const [filterError, setFilterError] = useState(false)
   const [itemAdded, setItemAdded] = useState(false)
+  const [isLoading, setIsLoading] = useState(null)
+  const [error, setError] = useState(null)
+  const [category, setCategory] = useState();
   const dispatch = useDispatch();
 
   let productID = window.location.pathname.split("/").pop()
@@ -179,16 +184,49 @@ const Product = () => {
 
   useEffect(() => {
     if (location.pathname === `/shop/${productID}`) {
-      setProducts(allProducts)
+      setCategory("all")
     } else if (location.pathname === `/shop/men/${productID}`) {
-      setProducts(menProducts)
+      setCategory("men")
     } else if (location.pathname === `/shop/women/${productID}`) {
-      setProducts(womenProducts)
+      setCategory("women")
     } else if (location.pathname === `/shop/unisex/${productID}`) {
-      setProducts(unisexProducts)
+      setCategory("unisex")
     }
   }, [location.pathname, productID, products.length])
 
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      setIsLoading(true)
+      setError(null)
+      try {
+        const response = await fetch(`https://react-h-1bba3-default-rtdb.europe-west1.firebasedatabase.app/allCategories/-N18ZJjwSBrX7Qc-qbFH/${category}Products.json`)
+        if (!response.ok) {
+          throw new Error("Failed to load items! :(");
+        }
+        const data = await response.json();
+        const transformedProducts = [];
+
+        for (const key in data) {
+          transformedProducts.push({
+            id: data[key].id,
+            title: data[key].title,
+            price: data[key].price,
+            color: data[key].color,
+            size: data[key].size,
+            tag: data[key].tag,
+            img: data[key].img,
+          })
+        }
+        setProducts(transformedProducts)
+      } catch (error) {
+        setError(error.message)
+        console.log(error)
+      }
+      setIsLoading(false)
+    }
+    fetchCategory();
+  }, [category])
 
   useEffect(() => {
     if (products.length !== 0) {
@@ -216,19 +254,20 @@ const Product = () => {
       }, 2000);
       return
     }
-    console.log(color, size)
     dispatch(addProduct({ ...singleProduct, color, size, quantity }))
     setItemAdded(true)
+    setInterval(() => {
+      setItemAdded(false);
+    }, 2000);
   }
 
+  let singleProductItem = <LoadingSpinner />
 
-  return (
-    <Container>
-      <Navbar />
-      <Annoucement />
+  if (error === null && isLoading === false) {
+    singleProductItem =
       <Wrapper>
         <ImgContainer>
-          <Image src={singleProduct.img} />
+          <Image onerror={console.log("ERROR")} src={singleProduct.img === "" ? "https://play-lh.googleusercontent.com/pzgB2fszpoM4JjJxPConGQqwMW-czaYkYOinlHyC1uZq8gqQ_URKLuymg6sQEBhlrAQ" : singleProduct.img} />
         </ImgContainer>
         <InfoContainer>
           <Title>{singleProduct.title}</Title>
@@ -259,7 +298,6 @@ const Product = () => {
                 ))}
               </FilterSize>
             </Filter>
-
           </FilterContainer>
           {filterError ? <SubtitleError>Choose your size and color!</SubtitleError> : null}
           <AddContainer>
@@ -269,11 +307,18 @@ const Product = () => {
               <Add onClick={() => handleQuantity("inc")} />
             </AmountContainer>
             <Button onClick={handleClick}>ADD TO CART</Button>
-
           </AddContainer>
           {itemAdded ? <AddedItem >Item was added to cart!</AddedItem> : ""}
         </InfoContainer>
       </Wrapper>
+  }
+
+
+  return (
+    <Container>
+      <Navbar />
+      <Annoucement />
+      {singleProductItem}
       <Newsletter />
       <Footer />
     </Container>

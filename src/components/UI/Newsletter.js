@@ -50,11 +50,15 @@ const Button = styled.button`
 const Newsletter = () => {
 
   const [sending, setSending] = useState(false);
-  const [inputValue, setInputValue] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
 
   const emailHandler = () => {
-    setSending(true)
+    if (inputValue === "" || !inputValue.includes("@")) {
+      return
+    } else {
+      setSending(true)
+    }
   }
 
   return (
@@ -67,7 +71,7 @@ const Newsletter = () => {
           <Send />
         </Button>
       </InputContainer>
-      {sending && inputValue.length !== undefined && inputValue.includes("@") ? <p>Thank you for registering! You will receive notification very soon.</p> : ""}
+      {sending ? <p>Thank you for registering! You will receive notification very soon.</p> : ""}
     </Container >
   );
 };
