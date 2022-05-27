@@ -1,4 +1,4 @@
-# React E-commerce Shopp App [LIVE VERSION](https://lighthearted-dragon-d35c6e.netlify.app/)
+# React E-commerce Shop App [LIVE VERSION](https://lighthearted-dragon-d35c6e.netlify.app/)
 
 ## 📝 Table of Contents
 - [About](#about)
