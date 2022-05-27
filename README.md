@@ -34,9 +34,9 @@ You can swtich pages to see different clothes categories, add items to cart and 
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [ReactJS](https://reactjs.org/) - Web Framework
-- [Redux Toolkit](https://expressjs.com/) - State Management
-- [Firebase](https://vuejs.org/) - Server Environment
-- [styled-components](https://nodejs.org/en/) - Styles Framework
+- [Redux Toolkit](https://redux-toolkit.js.org/) - State Management
+- [Firebase](https://firebase.google.com/) - Server Environment
+- [styled-components](https://styled-components.com/) - Styles Framework
 
 ## ✍️ Authors <a name = "authors"></a>
 - [@voxx1](https://github.com/voxx1) - Idea & All work
