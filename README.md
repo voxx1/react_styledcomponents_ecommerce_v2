@@ -39,5 +39,5 @@ You can swtich pages to see different clothes categories, add items to cart and 
 - [styled-components](https://nodejs.org/en/) - Styles Framework
 
 ## ✍️ Authors <a name = "authors"></a>
-- [@voxx1](https://github.com/voxx1) - Idea & Initial work
+- [@voxx1](https://github.com/voxx1) - Idea & All work
 
